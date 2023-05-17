@@ -17,9 +17,11 @@ So, React Hooks are just special tools you can use to build fun games or apps wi
 
 Here are some of the most commonly used React Hooks:
 
-useState: This hook helps you add state to your functional components. It allows you to keep track of and update values that can change over time.
+___useState:___
+This hook helps you add state to your functional components. It allows you to keep track of and update values that can change over time.
 
-___useEffect:___ This hook lets you perform side effects in your components. Side effects can be things like fetching data from a server, subscribing to events, or updating the document title.
+___useEffect:___
+This hook lets you perform side effects in your components. Side effects can be things like fetching data from a server, subscribing to events, or updating the document title.
 
 ___useContext:___
 

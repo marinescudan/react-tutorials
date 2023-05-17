@@ -28,7 +28,7 @@ export const PostList = function () {
     <div>
       {data ? (
         <ul>
-          {data.map(item => (
+          {data.slice(0, 3).map(item => (
             <li key={item.id}>
                 <h2>{item.title}</h2>
                 <p>{item.body}</p>

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 export const FibonacciSequence = function ({ n }) {
   const calculateFibonacci = (num) => {
@@ -8,7 +8,8 @@ export const FibonacciSequence = function ({ n }) {
       return calculateFibonacci(num - 1) + calculateFibonacci(num - 2);
     }
   };
-
+  
+  // eslint-disable-next-line
   const fibonacciNumber = useMemo(() => calculateFibonacci(n), [n]);
 
   return (
