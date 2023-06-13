@@ -137,6 +137,55 @@ It is not necessary to bind 'this' inside constructor when using arrow function
 - hey are the building blocks, an app consist of multiple components
 - It splits the UI in smaller peices of code, making it more maitainable and reusable
 
+
+## What are the types of React components?
+
+Function component
+```JSX
+
+function FunctionComp () {
+    return <p>text</p>
+}
+
+```
+
+Class component
+```JSX
+import React from 'react'
+
+class ClassComp extends React.Component {
+    renderer(){
+        return <p>text</p>
+    }
+}
+```
+
+## How to export and import components?
+Export featue is used to export a particular module/file/component and use it in another module/file/component
+Import feature is used to import a particular module and use it in the existing module
+
+## What are te types of EXPORT?
+
+*export*
+Can be multiple export per file
+```JSX
+export const Header {}
+export const Navogation {}
+export const Footer {}
+
+import {Header, Navigation, Footer} from ',/my-components.jsx'
+```
+*export default*
+Can be a single export per file
+```JSX
+export default MyDashboard {}
+
+import  from 'my-dashboard.jsx'
+
+```
+
+
+
 ## What is the render() func in React?
 
 - All component must decalire a render functions that returns the html- element
@@ -192,12 +241,94 @@ Using the build-in setState() method
 | Stateless components    | Can not have state    | Can have props          |
 
 
-## What is a HOC?
+## What is a Higher Order Components?
 
 - They act as containers for other components
 - Keep components simple, and promotes re-usability.
 - Used to contain common logic to be ised by multiple components.
+- Its a function that thakes a component and return an new component
+```JSX
+const NewComponent = higherOrderComponent(originalComponent)
+```
 
+
+## How do you create a HOC?
+
+```JSX
+// component.jsx
+import UpdateClick from 'hoc.jsx'
+
+export class Click extends Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            count: 0
+        }
+    }
+
+    UpdateClick = ()=>{
+        this.setState({count: this.state.count + 1})
+    }
+
+    render () {
+        const { count } = this.state;
+        return (
+            <div>
+             <h1>{this.props.name} clicked {count} times</h1>
+             <button onClick={this.UpdateClick}>click</button>
+            </div>
+        )
+    }
+}
+export default UpdateClick(click);
+
+// hoc.jsx
+const UpdateComp = OriginalComp => {
+    class NewComp extends React.Component {
+        render() {
+            return <OriginalComp name="Jhon" />
+        }
+    }
+
+    return NewComp;
+}
+export default UpdateComp;
+
+
+
+// app.jsx
+import Click from "./click.jsx"
+function App() {
+    return {
+        <div>
+        <Click />
+        </div>
+    }
+}
+
+```
+
+
+## Wath are React pure components
+
+React.PureComponent is a variation of React.Component class and does a shallow comparition aof props and state
+Shallow comparition check for equality. In case of scalar atributes only compaires the values, and in case of objects, it only compaires their references
+
+## How does one create a Pure Component
+
+```JSX
+import React, { PureComponent } from "react"
+
+class PureComp extends PureComponent {
+    render () {
+        return <div>I am a purte component {this.props.name} </div>
+    }
+}
+
+export default PureComponent;
+
+```
 
 ## How can one embed(compose) two or more components into one?
 
@@ -250,13 +381,18 @@ const StatelessComponent = props => <div>{this.props.title}</div>;
 | Lifecycle methods       | Can work all lifecycle methods | not work with Life Cycle methods |
 | Reusability             | Can be reused                  | can not be reused                |
 
-## Explain the lifecycle methods?
+## Explain the component lifecycle methods?
 
 - getInitialState: is exectuted  before creation of the component
+- componentWillMount: is called imediatly before the initial rendering occures
 - componentDidMount: when the comp gets rendered and placed on the DOM
+
+- componentWillReceiveProps is called when comp receives props
 - shouldComponentUpdate: when a comp decides any changes to the DOM and return true/false based on conditions
+- componentWillUpdate: is invoked before rendering
 - componentDidUpdate: is invoked imediatly after rendering takes place
-- componentWillUnmount: is invoked imm before a comp is destroyed
+
+- componentWillUnmount: is invoked imm before a comp is destroyed, it performes any cleanup if necessary
 
 ## What is Redux?
 
